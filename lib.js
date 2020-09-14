@@ -3,19 +3,20 @@ function Novel(title, author, pages, read){
     this.title = title,
     this.author = author,
     this.pages = pages,
-    this.read = read
+    this.read = read;
 }
 function open(){
-    document.getElementById("form").style.display = "block";
+    document.getElementById("form-container").style.display = "block";
 }
 function closeForm() {
-    document.getElementById("form").style.display = "none";
+    document.getElementById("form-container").style.display = "none";
   }
   function addBookToLibrary(title, author, pages, read) {
     let newNovel = new Novel(title, author, pages, read);
     myLibrary.push(newNovel);
     render();
   }
+  
   function submitForm() {
     let title = document.getElementById('nTitle');
     let author = document.getElementById('nAuthor');
@@ -26,7 +27,9 @@ function closeForm() {
     title.value = "";
     author.value = "";
     pages.value = "";
+  
 }
+
 function getRadioValue() {
     let btns = document.getElementsByName('read');
 
@@ -65,9 +68,9 @@ for (i = 0; i < myLibrary.length; i++) {
     cell3.textContent = booky.pages;
     btn.textContent = booky.read;
     if (booky.read === "Yeah") {
-      btn.style.backgroundColor = "green";
+      btn.style.backgroundColor = "lightblue";
     } else {
-        btn.style.backgroundColor = "red";
+        btn.style.backgroundColor = "green";
     }
     cell4.append(btn);
     cell5.appendChild(delBtn);
@@ -80,19 +83,20 @@ for (i = 0; i < myLibrary.length; i++) {
   }
 
 function changeRead(e) {
-    //Find the current object
-    let table = document.querySelector('#table');  
+    //current object
+    let table = document.querySelector('#novel');  
     let read = e.target;
     let rowNum = read.parentNode.parentNode.rowIndex;
     let title = table.rows[rowNum].cells[0].textContent;
     let readValue = read.textContent;
-    //Changes color of read button
+
     if (readValue === "Yeah") {
-        read.style.backgroundColor = 'red';
-    } else {
+
         read.style.backgroundColor = 'green';
+    } else {
+        read.style.backgroundColor = 'lightblue';
     }
-    //Changes value of read in object
+  
     for (i = 0; i < myLibrary.length; i++) {
       if (myLibrary[i].title == title) {
         if (myLibrary[i].read === "Yeah") {
@@ -101,12 +105,12 @@ function changeRead(e) {
         } myLibrary[i].read = "Yeah";
       }
     }
-    //Render table again to update changes
+
     render();
   }
-  //Removes row (executes when remove button is clicked)
+
   function removeRow() {
-    let table = document.querySelector('#table');
+    let table = document.querySelector('#novel');
     let td = event.target.parentNode;
     let tr = td.parentNode;
     let row = tr.rowIndex;
@@ -114,9 +118,8 @@ function changeRead(e) {
     removeFromArray(title);
     tr.parentNode.removeChild(tr);
   }
+
   
-  //removes object from myLibrary array if removed table row's 
-    //title matches title in table
   function removeFromArray(title) {
       for (i = 0; i < myLibrary.length; i++) {
           if (myLibrary[i].title == title) {
@@ -126,8 +129,8 @@ function changeRead(e) {
       }
   }
   
-  let button = document.querySelector('#openTheForm');
-  button.addEventListener('click', () => openForm());
+  let button = document.querySelector('#open');
+  button.addEventListener('click', () => open());
   
   let submitBook = document.querySelector('#submitBook');
   submitBook.addEventListener('click', submitForm);

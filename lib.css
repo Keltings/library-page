@@ -2,17 +2,17 @@ input{
     box-sizing: border-box;
 }
 header{
-    font-size: 50px; 
-    background-color: brown;
-    font-family: 'Times New Roman', Times, serif;
+    font-size: 20px; 
+    font-display: swap;
     text-align: center;
-    top:1px;
+    top:0px;
 }
 #myNovel{
-    background-color: #6495ed;
-    border-style: solid;
-    border-width: 2px;
-    border-color: black;
+    background-color: #eb9fc9;
+    border-style: outset;
+    border-width: 10px;
+    border-color: rgb(85, 79, 79);
+    padding: 10px;
 }
 th td {
     padding: 2px;
